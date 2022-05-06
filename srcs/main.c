@@ -6,13 +6,13 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:24:07 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/06 13:52:26 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/06 15:06:15 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-static void *ft_update_philo(t_data *data)
+static void *ft_create_philo(t_philo *data_philo)
 {
 	long	diff;
 	int		isLive;
@@ -20,12 +20,12 @@ static void *ft_update_philo(t_data *data)
 	isLive = 1;
 	while(isLive)
 	{
-		gettimeofday(&(data->time.end), NULL);
-		diff = time_diff(&(data->time.start), &data->time.end);
-		//printf("diff:  %ld\n", diff);
-		if (diff >= data->time_to_die)
+		gettimeofday(&(data_philo->time.end), NULL);
+		diff = time_diff(&(data_philo->time.start), &(data_philo->time.end));
+		//printf("%ld ms\n", diff);
+		if (diff >= data_philo->time_to_die)
 		{
-			printf("%ld ms:	philo %d meur\n", diff, data->philo.id);
+			printf("%ld ms:	philo %d meur\n", diff, data_philo->id);
 			isLive = 0;
 		}
 	}
@@ -40,29 +40,27 @@ void	ft_create_threads(t_data *data)
 	i = 0;
 	while (i < data->nb)
 	{
-		data->philo.id = i + 1;
-		ret = pthread_create(&data->tab_thread_philos[i], NULL, (void *)ft_update_philo, data);
+		data->tab_philos[i].id = i + 1;
+		ret = pthread_create(&data->tab_philos[i].id_thread, NULL, (void *)ft_create_philo, &(data->tab_philos[i]));
+		printf("valeur threads %d, %ld\n", i + 1, data->tab_philos[i].id_thread);
 		if (ret)
 			printf("Error creation thread %d\n", i);
 		i++;
 	}
 }
 
+
+
 int main(int argc, char **argv)
 {
 	//static pthread_mutex_t mutex_stock = PTHREAD_MUTEX_INITIALIZER;
 	t_data 	data;
-	long	diff;
 
 	if (ft_check_arg(argc, argv))
 		return (0);
 	data = ft_get_args(argv);
 	ft_create_threads(&data);
-	
-
-	gettimeofday(&(data.time.end), NULL);
-	diff = time_diff(&(data.time.start), &(data.time.end));
-	printf("threads créé %ld ms\n\n", diff);
+	ft_print_time_diff(&data, "creation threads\n");
 	
 
 
@@ -70,6 +68,6 @@ int main(int argc, char **argv)
 	/* Attente de la fin des threads. */
 	unsigned int i = 0;
 	for (i = 0; i < data.nb; i++)
-		pthread_join (data.tab_thread_philos[i], NULL);
+		pthread_join (data.tab_philos[i].id_thread, NULL);
 	return (0);
 }
