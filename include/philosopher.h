@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:25:22 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/08 13:37:33 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/08 15:23:23 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_forks
 
 typedef struct s_philo
 {
-	char			*state;
 	pthread_t		id_thread;
 	unsigned int	id;
 	int				isAlive;
@@ -47,7 +46,6 @@ typedef struct s_philo
 	int				forkRight;
 	int				forkLeft;
 	int				isEating;
-	t_time			time_philo;
 	t_time			time;
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
@@ -60,14 +58,14 @@ typedef struct s_philo
 typedef struct s_data
 {
 	unsigned int	nb;
-	unsigned int	index;
+	t_philo			*tab_philos;
 	t_forks			*forks;
+	unsigned int	index;
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
 	unsigned int	*tab_time_each_eat;
 	t_time			time;
-	t_philo			*tab_philos;
 }	t_data;
 
 /*
