@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:24:07 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/08 17:13:27 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/08 19:26:41 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ void ft_kill_all_philos(t_data *data)
 	i = 0;
 	while (i < data->nb)
 	{
+	//pthread_mutex_lock(&(data->tab_philos[i].forks->mutex));
+
 		data->tab_philos[i].isAlive = 0;
 		//free(data->tab_philos[i].forks);
+	//pthread_mutex_unlock(&(data->tab_philos[i].forks->mutex));
+		
 		i++;
 	}
 }
@@ -36,7 +40,7 @@ int ft_check_isAllAlive(t_data *data)
 	{
 		gettimeofday(&(data->tab_philos[i].time.end), NULL);
 		diff = time_diff(&(data->tab_philos[i].time.start), &(data->tab_philos[i].time.end));
-		if (diff >= data->tab_philos[i].last_time_eat + data->tab_philos[i].time_to_die)
+		if (diff > data->tab_philos[i].last_time_eat + data->tab_philos[i].time_to_die)
 		{
 			gettimeofday(&(data->tab_philos[i].time.end), NULL);
 			diff = time_diff(&(data->tab_philos[i].time.start), &(data->tab_philos[i].time.end));
@@ -52,16 +56,14 @@ int ft_check_isAllAlive(t_data *data)
 int	ft_get_forks(t_philo *data_philo)
 {
 	pthread_mutex_lock(&(data_philo->forks->mutex));
-	if (data_philo->forks[data_philo->id - 1].isAvailable == 1)
+	if (data_philo->forks[data_philo->id - 1].isAvailable == 1
+		&& data_philo->forks[data_philo->id % data_philo->forks->tot_forks].isAvailable == 1
+		&& data_philo->forks->tot_forks > 1)
 	{
-		ft_print_time_diff_philo(data_philo, "has taken the left fork\n");
+		ft_print_time_diff_philo(data_philo, "has taken a fork\n");
 		data_philo->forks[data_philo->id - 1].isAvailable = 0;
 		data_philo->forkLeft = 1;
-	}
-
-	if (data_philo->forks[data_philo->id % data_philo->forks->tot_forks].isAvailable == 1)
-	{
-		ft_print_time_diff_philo(data_philo, "has taken the right fork\n");
+		ft_print_time_diff_philo(data_philo, "has taken a fork\n");
 		data_philo->forks[data_philo->id % data_philo->forks->tot_forks].isAvailable = 0;
 		data_philo->forkRight = 1;
 	}
@@ -77,8 +79,6 @@ int	ft_get_forks(t_philo *data_philo)
 
 void	ft_drop_forks(t_philo *data_philo)
 {
-	//pthread_mutex_lock(&(data_philo->forks->mutex));
-
 	data_philo->forks[data_philo->id - 1].isAvailable = 1;
 	data_philo->forkLeft = 0;
 	data_philo->forks[data_philo->id % data_philo->forks->tot_forks].isAvailable = 1;
@@ -89,8 +89,11 @@ void	ft_drop_forks(t_philo *data_philo)
 
 static void *ft_loop_philo(t_philo *data_philo)
 {
-	pthread_mutex_lock(&(data_philo->mutex));
+	pthread_mutex_init(&(data_philo->mutex), NULL);
+	pthread_mutex_init(&(data_philo->forks->mutex), NULL);
+
 	data_philo->isAlive = 1;
+	pthread_mutex_lock(&(data_philo->mutex));
 	while (data_philo->isAlive == 1)
 	{
 		if (ft_get_forks(data_philo))
@@ -143,17 +146,16 @@ int main(int argc, char **argv)
 	{
 		if (!ft_check_isAllAlive(&data))
 		{
+			i = 0;
+			while (i < data.nb)
+			{
+				pthread_join (data.tab_philos[i].id_thread, NULL);
+				i++;
+			}
 			free(data.tab_philos);
 			free(data.forks);
 			return (0);
 		}
-	}
-
-	i = 0;
-	while (i < data.nb)
-	{
-		pthread_join (data.tab_philos[i].id_thread, NULL);
-		i++;
 	}
 	return (0);
 }

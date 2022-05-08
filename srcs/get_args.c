@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 21:00:55 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/08 15:02:46 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/08 19:27:39 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_data	ft_get_args(char **argv)
 	data.time_to_sleep = ft_atoi(argv[4]);
 	data.tab_time_each_eat = NULL;
 	i = 0;
+	pthread_mutex_init(&(data.mutex), NULL);
 	data.tab_philos = malloc(sizeof(t_philo) * data.nb);
 	data.forks = malloc(sizeof(t_forks) * data.nb);
 	while (i < data.nb)
@@ -58,7 +59,6 @@ t_data	ft_get_args(char **argv)
 		data.tab_philos[i].isEating = 0;
 		data.tab_philos[i].last_time_eat = 0;
 		pthread_mutex_init(&(data.tab_philos[i].mutex), NULL);
-		data.forks[i].pos = i;
 		data.forks[i].isAvailable = 1;
 		data.forks[i].tot_forks = data.nb;
 		pthread_mutex_init(&(data.forks[i].mutex), NULL);

@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:25:22 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/08 15:23:23 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/08 18:45:38 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_time
 
 typedef struct s_forks
 {
-	unsigned int	pos;
+	//unsigned int	pos;
 	int				isAvailable;
 	unsigned int	tot_forks;
 	pthread_mutex_t mutex;
@@ -66,6 +66,7 @@ typedef struct s_data
 	unsigned int	time_to_sleep;
 	unsigned int	*tab_time_each_eat;
 	t_time			time;
+	pthread_mutex_t mutex;
 }	t_data;
 
 /*
