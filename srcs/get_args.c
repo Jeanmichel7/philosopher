@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 21:00:55 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/09 23:52:38 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/10 01:30:27 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,19 @@ t_data	ft_get_args(int argc, char **argv)
 		data.tab_philos[i].isEating = 0;
 		data.tab_philos[i].last_time_eat = 0;
 		data.tab_philos[i].main_mutex = &(data.main_mutex);
+		data.tab_philos[i].tot_forks = data.nb;
 		pthread_mutex_init(&(data.tab_philos[i].philo_mutex), NULL);
-		pthread_mutex_init(&(data.tab_philos[i].fork_mutex), NULL);
 		data.forks[i].isAvailable = 1;
-		data.forks[i].tot_forks = data.nb;
+		pthread_mutex_init(&(data.forks[i].fork_mutex), NULL);
 		//pthread_mutex_init(&(data.forks[i].fork_mutex), NULL);
-		data.tab_philos[i].forks = data.forks;
-		data.tab_philos[i].forks->fork_mutex = &(data.tab_philos[i].fork_mutex);
+		
+		//data.tab_philos[i].forks->fork_mutex = &(data.tab_philos[i].fork_mutex);
+		i++;
+	}
+	i = 0;
+	while(i < data.nb)
+	{
+		data.tab_philos[i].forks = (data.forks);
 		i++;
 	}
 	return (data);

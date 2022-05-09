@@ -6,12 +6,11 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:24:07 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/09 23:52:41 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/10 01:55:18 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
-
 
 void ft_kill_all_philos(t_data *data)
 {
@@ -53,22 +52,33 @@ int ft_check_isAllAlive(t_data *data)
 
 int	ft_get_forks(t_philo *data_philo)
 {
-	pthread_mutex_lock(&(data_philo->fork_mutex));
+	int	forkLeft;
+	int	forkRight;
+
+	forkLeft = 0;
+	forkRight = 0;
+	pthread_mutex_lock(&(data_philo->forks[data_philo->id - 1].fork_mutex));
 	if (data_philo->forks[data_philo->id - 1].isAvailable == 1)
 	{
 		ft_print_time_diff_philo(data_philo, "has taken left fork\n");
 		data_philo->forks[data_philo->id - 1].isAvailable = 0;
 		data_philo->forkLeft = 1;
 	}
-
-	if (data_philo->forks[data_philo->id % data_philo->forks->tot_forks].isAvailable == 1)
+	if (data_philo->forkLeft == 1)
+		forkLeft = 1;
+	pthread_mutex_unlock(&(data_philo->forks[data_philo->id - 1].fork_mutex));
+	pthread_mutex_lock(&(data_philo->forks[data_philo->id % data_philo->tot_forks].fork_mutex));
+	if (data_philo->forks[data_philo->id % data_philo->tot_forks].isAvailable == 1)
 	{
 		ft_print_time_diff_philo(data_philo, "has taken right fork\n");
-		data_philo->forks[data_philo->id % data_philo->forks->tot_forks].isAvailable = 0;
+		data_philo->forks[data_philo->id % data_philo->tot_forks].isAvailable = 0;
 		data_philo->forkRight = 1;
+		forkRight = 1;
 	}
-	pthread_mutex_unlock(&(data_philo->fork_mutex));
-	if (data_philo->forkLeft && data_philo->forkRight)
+	if (data_philo->forkRight == 1)
+		forkRight = 1;
+	pthread_mutex_unlock(&(data_philo->forks[data_philo->id % data_philo->tot_forks].fork_mutex));
+	if (forkLeft && forkRight)
 		return (1);
 	else
 		return (0);
@@ -77,11 +87,17 @@ int	ft_get_forks(t_philo *data_philo)
 
 void	ft_drop_forks(t_philo *data_philo)
 {
+	pthread_mutex_lock(&(data_philo->forks[data_philo->id - 1].fork_mutex));
 	data_philo->forks[data_philo->id - 1].isAvailable = 1;
+	pthread_mutex_unlock(&(data_philo->forks[data_philo->id - 1].fork_mutex));
+	pthread_mutex_lock(&(data_philo->forks[data_philo->id % data_philo->tot_forks].fork_mutex));
+	data_philo->forks[data_philo->id % data_philo->tot_forks].isAvailable = 1;
+	pthread_mutex_unlock(&(data_philo->forks[data_philo->id % data_philo->tot_forks].fork_mutex));
+	pthread_mutex_lock(&(data_philo->philo_mutex));
 	data_philo->forkLeft = 0;
-	data_philo->forks[data_philo->id % data_philo->forks->tot_forks].isAvailable = 1;
 	data_philo->forkRight = 0;
 	data_philo->isEating = 0;
+	pthread_mutex_unlock(&data_philo->philo_mutex);
 }
 
 
@@ -95,6 +111,8 @@ static void *ft_loop_philo(t_philo *data_philo)
 	int isAlive;
 	isAlive = data_philo->isAlive;
 	pthread_mutex_unlock(&data_philo->philo_mutex);
+
+	
 	while (isAlive == 1)
 	{
 		if (ft_get_forks(data_philo))
