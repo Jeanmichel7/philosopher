@@ -6,7 +6,7 @@
 #    By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/03 16:18:36 by jrasser           #+#    #+#              #
-#    Updated: 2022/05/08 17:55:18 by jrasser          ###   ########.fr        #
+#    Updated: 2022/05/09 23:50:49 by jrasser          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ OBJS 		= ${SRCS:.c=.o}
 RM			= rm -f
 NAME 		= philo
 CC 			= gcc
-CFLAGS		= -Wall -Wextra -g
+CFLAGS		= -Wall -Wextra -g -fsanitize=thread
 
 
 ${NAME}	:	${OBJS}
-			gcc -o ${NAME} ${OBJS} -lpthread -D_REENTRANT
+			gcc -o ${NAME} ${OBJS} -lpthread -D_REENTRANT ${CFLAGS}
 
 
 all : ${NAME}

@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:25:22 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/08 18:45:38 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/09 23:32:09 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_forks
 	//unsigned int	pos;
 	int				isAvailable;
 	unsigned int	tot_forks;
-	pthread_mutex_t mutex;
+	pthread_mutex_t *fork_mutex;
 
 }	t_forks;
 
@@ -51,7 +51,9 @@ typedef struct s_philo
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
 	long			last_time_eat;
-	pthread_mutex_t mutex;
+	pthread_mutex_t philo_mutex;
+	pthread_mutex_t *main_mutex;
+	pthread_mutex_t fork_mutex;
 
 }	t_philo;
 
@@ -64,9 +66,9 @@ typedef struct s_data
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
-	unsigned int	*tab_time_each_eat;
+	unsigned int	tab_time_each_eat;
 	t_time			time;
-	pthread_mutex_t mutex;
+	pthread_mutex_t main_mutex;
 }	t_data;
 
 /*
@@ -79,7 +81,7 @@ typedef struct s_datas
 
 
 int			ft_check_arg(int argc, char **argv);
-t_data		ft_get_args(char **argv);
+t_data		ft_get_args(int argc, char **argv);
 
 
 /*  TIME  */

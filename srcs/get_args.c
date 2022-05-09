@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 21:00:55 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/08 19:27:39 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/09 23:52:38 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_atoi(const char *str)
 	return ((int)res);
 }
 
-t_data	ft_get_args(char **argv)
+t_data	ft_get_args(int argc, char **argv)
 {
 	t_data			data;
 	unsigned int	i;
@@ -43,9 +43,9 @@ t_data	ft_get_args(char **argv)
 	data.time_to_die = ft_atoi(argv[2]);
 	data.time_to_eat = ft_atoi(argv[3]);
 	data.time_to_sleep = ft_atoi(argv[4]);
-	data.tab_time_each_eat = NULL;
+	if (argc == 6)
+		data.tab_time_each_eat = ft_atoi(argv[5]);
 	i = 0;
-	pthread_mutex_init(&(data.mutex), NULL);
 	data.tab_philos = malloc(sizeof(t_philo) * data.nb);
 	data.forks = malloc(sizeof(t_forks) * data.nb);
 	while (i < data.nb)
@@ -58,11 +58,14 @@ t_data	ft_get_args(char **argv)
 		data.tab_philos[i].forkRight = 0;
 		data.tab_philos[i].isEating = 0;
 		data.tab_philos[i].last_time_eat = 0;
-		pthread_mutex_init(&(data.tab_philos[i].mutex), NULL);
+		data.tab_philos[i].main_mutex = &(data.main_mutex);
+		pthread_mutex_init(&(data.tab_philos[i].philo_mutex), NULL);
+		pthread_mutex_init(&(data.tab_philos[i].fork_mutex), NULL);
 		data.forks[i].isAvailable = 1;
 		data.forks[i].tot_forks = data.nb;
-		pthread_mutex_init(&(data.forks[i].mutex), NULL);
+		//pthread_mutex_init(&(data.forks[i].fork_mutex), NULL);
 		data.tab_philos[i].forks = data.forks;
+		data.tab_philos[i].forks->fork_mutex = &(data.tab_philos[i].fork_mutex);
 		i++;
 	}
 	return (data);
