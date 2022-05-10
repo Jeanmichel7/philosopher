@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 21:58:40 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/10 21:58:53 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/11 00:51:23 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_get_forks(t_philo *data_philo)
 		{
 			ft_print_time_diff_philo(data_philo, "has taken left fork\n");
 			data_philo->forks[data_philo->id - 1].isAvailable = 0;
-			//data_philo->forks[data_philo->id - 1].forks_available -= 1;
+			data_philo->forks[data_philo->id - 1].forks_available -= 1;
 			data_philo->forkLeft = 1;
 		}
 		if (data_philo->forkLeft == 1)
@@ -50,7 +50,7 @@ int	ft_get_forks(t_philo *data_philo)
 		{
 			ft_print_time_diff_philo(data_philo, "has taken right fork\n");
 			data_philo->forks[data_philo->id % data_philo->tot_forks].isAvailable = 0;
-			//data_philo->forks[data_philo->id % data_philo->tot_forks].forks_available -= 1;
+			data_philo->forks[data_philo->id % data_philo->tot_forks].forks_available -= 1;
 			data_philo->forkRight = 1;
 		}
 		if (data_philo->forkRight == 1)
@@ -61,7 +61,6 @@ int	ft_get_forks(t_philo *data_philo)
 	}
 	return (0);
 }
-
 
 void	ft_drop_forks(t_philo *data_philo)
 {

@@ -6,7 +6,7 @@
 #    By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/03 16:18:36 by jrasser           #+#    #+#              #
-#    Updated: 2022/05/10 22:02:00 by jrasser          ###   ########.fr        #
+#    Updated: 2022/05/11 00:10:41 by jrasser          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ RM			= rm -f
 NAME 		= philo
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-
 
 ${NAME}	:	${OBJS}
 			gcc -o ${NAME} ${OBJS} -lpthread -D_REENTRANT ${CFLAGS}

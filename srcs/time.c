@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 23:16:25 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/10 21:49:39 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/11 00:02:11 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ long	ft_print_time_diff_philo(t_philo *data, char *str)
 		gettimeofday(&(data->time.end), NULL);
 		diff = time_diff(&(data->time.start), &(data->time.end));
 		printf("%10ld ms:	philo %.2d %s", diff, data->id, str);
+		return (diff);
 	}
-	return (diff);
+	return 0; 
 }

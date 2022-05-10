@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 10 22:02:20 2022
+# Make data base, printed on Wed May 11 00:11:43 2022
 
 # Variables
 
@@ -195,16 +195,16 @@ all: philo
 
 philo: srcs/main.o srcs/checker.o srcs/get_args.o srcs/time.o srcs/kill.o srcs/manage_forks.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-05-10 22:02:02.62307
+#  Last modified 2022-05-11 00:11:02.94307
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 28):
+#  recipe to execute (from 'Makefile', line 27):
 			gcc -o ${NAME} ${OBJS} -lpthread -D_REENTRANT ${CFLAGS}
 
 # Not a target:
 srcs/checker.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 22:02:02.47307
+#  Last modified 2022-05-11 00:11:02.79307
 #  File has been updated.
 #  Successfully updated.
 
@@ -216,21 +216,21 @@ srcs/checker.o:
 # Not a target:
 srcs/manage_forks.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 22:02:02.57307
+#  Last modified 2022-05-11 00:11:02.89307
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 22:02:00.95307
+#  Last modified 2022-05-11 00:10:41.24307
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/time.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 22:02:02.52307
+#  Last modified 2022-05-11 00:11:02.84307
 #  File has been updated.
 #  Successfully updated.
 
@@ -239,13 +239,13 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 36):
+#  recipe to execute (from 'Makefile', line 35):
 		${RM} ${NAME}
 
 # Not a target:
 srcs/get_args.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 22:02:02.50307
+#  Last modified 2022-05-11 00:11:02.81307
 #  File has been updated.
 #  Successfully updated.
 
@@ -266,21 +266,21 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 33):
+#  recipe to execute (from 'Makefile', line 32):
 		${RM} ${OBJS}
 
 # Not a target:
 srcs/kill.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 22:02:02.54307
+#  Last modified 2022-05-11 00:11:02.86307
 #  File has been updated.
 #  Successfully updated.
 
+ 
 # Not a target:
 srcs/main.o:
- 
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 22:02:02.45307
+#  Last modified 2022-05-11 00:11:02.76307
 #  File has been updated.
 #  Successfully updated.
 
@@ -298,6 +298,6 @@ srcs/main.o:
 # strcache performance: lookups = 46 / hit rate = 43%
 # hash-table stats:
 # Load=26/8192=0%, Rehash=0, Collisions=1/46=2%
-# Finished Make data base on Tue May 10 22:02:20 2022
+# Finished Make data base on Wed May 11 00:11:43 2022
 
  
