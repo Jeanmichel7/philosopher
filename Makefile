@@ -6,7 +6,7 @@
 #    By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/03 16:18:36 by jrasser           #+#    #+#              #
-#    Updated: 2022/05/10 01:53:26 by jrasser          ###   ########.fr        #
+#    Updated: 2022/05/10 03:33:50 by jrasser          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS 		= ${SRCS:.c=.o}
 RM			= rm -f
 NAME 		= philo
 CC 			= gcc
-CFLAGS		= -Wall -Wextra -g -fsanitize=thread
+CFLAGS		= -Wall -Wextra -g -fsanitize=address
 
 
 ${NAME}	:	${OBJS}

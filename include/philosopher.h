@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:25:22 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/10 01:30:29 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/10 03:03:14 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_forks
 {
 	//unsigned int	pos;
 	int				isAvailable;
-	//unsigned int	tot_forks;
+	unsigned int	forks_available;
 	pthread_mutex_t fork_mutex;
 
 }	t_forks;
@@ -52,6 +52,7 @@ typedef struct s_philo
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
 	long			last_time_eat;
+	unsigned int	count_eat;
 	pthread_mutex_t philo_mutex;
 	pthread_mutex_t *main_mutex;
 	//pthread_mutex_t fork_mutex;
@@ -67,7 +68,7 @@ typedef struct s_data
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
-	unsigned int	tab_time_each_eat;
+	unsigned int	each_must_eat;
 	t_time			time;
 	pthread_mutex_t main_mutex;
 }	t_data;
