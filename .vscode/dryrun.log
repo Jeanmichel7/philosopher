@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/jrasser/42/philosopher'
+make: 'philo' is up to date.
+make: Leaving directory '/home/jrasser/42/philosopher'
+ 

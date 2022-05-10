@@ -1,3 +1,5 @@
 *.o
 srcs/*.o
 DS_Store
+philo
+.vscode/*

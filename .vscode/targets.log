@@ -1,0 +1,303 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Tue May 10 22:02:20 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+WSLENV = ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID
+# default
+.SHELLFLAGS := -c
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /home/jrasser/42/philosopher
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile', line 21)
+RM = rm -f
+# environment
+VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePackId":"f83d64ecbb77f4fedc6e11df9a0b86e8.fr","_translationsConfigFile":"/home/jrasser/.vscode-server/data/clp/f83d64ecbb77f4fedc6e11df9a0b86e8.fr/tcf.json","_cacheRoot":"/home/jrasser/.vscode-server/data/clp/f83d64ecbb77f4fedc6e11df9a0b86e8.fr","_resolvedLanguagePackCoreLocation":"/home/jrasser/.vscode-server/data/clp/f83d64ecbb77f4fedc6e11df9a0b86e8.fr/57fd6d0195bb9b9d1b49f6da5db789060795de47","_corruptedFile":"/home/jrasser/.vscode-server/data/clp/f83d64ecbb77f4fedc6e11df9a0b86e8.fr/corrupted.info","_languagePackSupport":true}
+# environment
+_ = /mnt/c/Users/michm/AppData/Local/Programs/Microsoft VS Code/bin/code
+# makefile (from 'Makefile', line 24)
+CFLAGS = -Wall -Wextra -Werror
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+XDG_DATA_DIRS = /usr/local/share:/usr/share:/var/lib/snapd/desktop
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from 'Makefile', line 20)
+OBJS = ${SRCS:.c=.o}
+# environment
+VSCODE_CWD = /mnt/c/Users/michm/AppData/Local/Programs/Microsoft VS Code
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/jrasser/.vscode-server/bin/57fd6d0195bb9b9d1b49f6da5db789060795de47/bin/remote-cli:/home/jrasser/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/michm/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/michm/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/michm/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+# makefile (from 'Makefile', line 22)
+NAME = philo
+# environment
+VSCODE_LOG_STACK = false
+# environment
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-f643be73-cca0-481e-aa32-9dc1608215aa.sock
+# environment
+VSCODE_SERVER_TAR = /mnt/c/Users/michm/AppData/Local/Temp/vscode-remote-wsl/57fd6d0195bb9b9d1b49f6da5db789060795de47/vscode-server-stable-linux-x64.tar.gz
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/jrasser/42/philosopher
+# default
+.LOADED := 
+# environment
+WSL_INTEROP = /run/WSL/403_interop
+# environment
+PULSE_SERVER = /mnt/wslg/PulseServer
+# environment
+WT_SESSION = b0b53212-ce40-4cb2-9307-566d9142e7cd
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/jrasser
+# environment
+LOGNAME = jrasser
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 13)
+SRCS = srcs/main.c srcs/checker.c srcs/get_args.c srcs/time.c srcs/kill.c srcs/manage_forks.c
+# environment
+SHLVL = 1
+# makefile (from 'Makefile', line 23)
+CC = gcc
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = jrasser
+# makefile
+.DEFAULT_GOAL := philo
+# environment
+LIBVIRT_DEFAULT_URI = qemu:///system
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/michm/.vscode/extensions/ms-vscode-remote.remote-wsl-0.66.2
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# environment
+WT_PROFILE_ID = {2c4de342-38b7-51cf-b940-2309a097f518}
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# environment
+HOSTTYPE = x86_64
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+WAYLAND_DISPLAY = wayland-0
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# default
+.RECIPEPREFIX := 
+# environment
+XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+WSL_DISTRO_NAME = Ubuntu
+# environment
+MOTD_SHOWN = update-motd
+# variable set hash-table stats:
+# Load=78/1024=8%, Rehash=0, Collisions=11/108=10%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 2080, inode 74159): 11 files, no impossibilities.
+
+# 11 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+all: philo
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+philo: srcs/main.o srcs/checker.o srcs/get_args.o srcs/time.o srcs/kill.o srcs/manage_forks.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-10 22:02:02.62307
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 28):
+			gcc -o ${NAME} ${OBJS} -lpthread -D_REENTRANT ${CFLAGS}
+
+# Not a target:
+srcs/checker.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 22:02:02.47307
+#  File has been updated.
+#  Successfully updated.
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/manage_forks.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 22:02:02.57307
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 22:02:00.95307
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/time.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 22:02:02.52307
+#  File has been updated.
+#  Successfully updated.
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 36):
+		${RM} ${NAME}
+
+# Not a target:
+srcs/get_args.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 22:02:02.50307
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 33):
+		${RM} ${OBJS}
+
+# Not a target:
+srcs/kill.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 22:02:02.54307
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/main.o:
+ 
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 22:02:02.45307
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=15/1024=1%, Rehash=0, Collisions=0/40=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 26 / storage = 244 B / avg = 9 B
+# current buf: size = 8162 B / used = 244 B / count = 26 / avg = 9 B
+
+# strcache performance: lookups = 46 / hit rate = 43%
+# hash-table stats:
+# Load=26/8192=0%, Rehash=0, Collisions=1/46=2%
+# Finished Make data base on Tue May 10 22:02:20 2022
+
+ 
