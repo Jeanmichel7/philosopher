@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:25:22 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/16 00:10:43 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 00:21:26 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_time
 typedef struct s_forks
 {
 	int				is_available;
-	pthread_mutex_t	fork_mutex;
+	pthread_mutex_t	f_mutex;
 
 }	t_forks;
 
@@ -87,7 +87,7 @@ long	ft_print_time_diff_philo(t_philo *data, char *str);
 void	better_sleep(unsigned int time);
 
 /* FORKS */
-int		ft_get_forks(t_philo *data_philo);
-void	ft_drop_forks(t_philo *data_philo);
+int		ft_get_forks(t_philo *d_philo);
+void	ft_drop_forks(t_philo *d_philo);
 
 #endif

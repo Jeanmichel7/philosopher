@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 21:00:55 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/16 00:14:58 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 00:21:26 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_set_philo(t_data *data, int i, char **argv)
 	pthread_mutex_init(&(data->philos[i].philo_mutex), NULL);
 	pthread_mutex_init(&(data->philos[i].print_mutex), NULL);
 	data->forks[i].is_available = 1;
-	pthread_mutex_init(&(data->forks[i].fork_mutex), NULL);
+	pthread_mutex_init(&(data->forks[i].f_mutex), NULL);
 }
 
 void	ft_sub_set_philo(t_data *data)

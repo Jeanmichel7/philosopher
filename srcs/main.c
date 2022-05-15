@@ -6,32 +6,32 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:24:07 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/16 00:17:57 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 00:20:54 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-static void	*ft_loop_philo(t_philo *data_philo)
+static void	*ft_loop_philo(t_philo *d_philo)
 {
 	int	is_alive;
 
-	pthread_mutex_lock(&(data_philo->philo_mutex));
-	data_philo->is_alive = 1;
-	if (data_philo->id % 2 == 0)
+	pthread_mutex_lock(&(d_philo->philo_mutex));
+	d_philo->is_alive = 1;
+	if (d_philo->id % 2 == 0)
 		usleep(1000);
-	is_alive = data_philo->is_alive;
-	pthread_mutex_unlock(&data_philo->philo_mutex);
+	is_alive = d_philo->is_alive;
+	pthread_mutex_unlock(&d_philo->philo_mutex);
 	while (is_alive == 1)
 	{
-		if (ft_get_forks(data_philo))
+		if (ft_get_forks(d_philo))
 		{
-			usleep(data_philo->time_to_eat * 1000);
-			ft_drop_forks(data_philo);
+			usleep(d_philo->time_to_eat * 1000);
+			ft_drop_forks(d_philo);
 		}
-		pthread_mutex_lock(&(data_philo->philo_mutex));
-		is_alive = data_philo->is_alive;
-		pthread_mutex_unlock(&data_philo->philo_mutex);
+		pthread_mutex_lock(&(d_philo->philo_mutex));
+		is_alive = d_philo->is_alive;
+		pthread_mutex_unlock(&d_philo->philo_mutex);
 	}
 	return (NULL);
 }
