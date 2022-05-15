@@ -1,5 +1,6 @@
 make --dry-run --keep-going --print-directory
-make: Entering directory '/home/jrasser/42/philosopher'
-make: 'philo' is up to date.
-make: Leaving directory '/home/jrasser/42/philosopher'
+make: Entering directory '/home/jrasser/42/philo'
+gcc -Wall -Wextra -Werror   -c -o srcs/kill.o srcs/kill.c
+gcc -o philo srcs/main.o srcs/checker.o srcs/get_args.o srcs/time.o srcs/kill.o srcs/manage_forks.o -lpthread -D_REENTRANT -Wall -Wextra -Werror
+make: Leaving directory '/home/jrasser/42/philo'
  

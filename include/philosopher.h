@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:25:22 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/10 22:00:05 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 00:10:43 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ typedef struct s_time
 
 typedef struct s_forks
 {
-	int				isAvailable;
-	unsigned int	forks_available;
-	pthread_mutex_t fork_mutex;
+	int				is_available;
+	pthread_mutex_t	fork_mutex;
 
 }	t_forks;
 
@@ -38,23 +37,26 @@ typedef struct s_philo
 {
 	pthread_t		id_thread;
 	unsigned int	id;
-	int				isAlive;
+	int				is_alive;
 	t_forks			*forks;
 	unsigned int	tot_forks;
-	int				forkRight;
-	int				forkLeft;
-	int				isEating;
-	int				isOneDead;
+	int				f_right;
+	int				f_left;
+	int				is_eating;
+	int				is_hungre;
+	int				is_one_dead;
 	t_time			time;
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
 	long			last_time_eat;
 	unsigned int	count_eat;
-	pthread_mutex_t philo_mutex;
-	pthread_mutex_t *main_mutex;
-	pthread_mutex_t print_mutex;
+	pthread_mutex_t	philo_mutex;
+	pthread_mutex_t	main_mutex;
+	pthread_mutex_t	print_mutex;
 
+	struct s_philo	*prev_philo;
+	struct s_philo	*next_philo;
 }	t_philo;
 
 typedef struct s_data
@@ -68,7 +70,7 @@ typedef struct s_data
 	unsigned int	time_to_sleep;
 	unsigned int	x_eat;
 	t_time			time;
-	pthread_mutex_t main_mutex;
+	pthread_mutex_t	main_mutex;
 }	t_data;
 
 /* ARGS */
@@ -76,12 +78,13 @@ int		ft_check_arg(int argc, char **argv);
 t_data	ft_get_args(int argc, char **argv);
 
 /* CHECK ALIVE */
-int 	ft_check_isAllAlive(t_data *d);
+int		ft_check_all_alive(t_data *d);
 
 /*  TIME  */
 long	time_diff(struct timeval *start, struct timeval *end);
 void	ft_print_time_diff(t_data *data, char *str);
 long	ft_print_time_diff_philo(t_philo *data, char *str);
+void	better_sleep(unsigned int time);
 
 /* FORKS */
 int		ft_get_forks(t_philo *data_philo);

@@ -6,24 +6,24 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 21:57:22 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/10 21:58:20 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 00:11:18 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-void ft_kill_all_philos(t_data *data)
+void	ft_kill_all_philos(t_data *data)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < data->nb)
 	{
 		pthread_mutex_lock(&data->philos[i].philo_mutex);
-		data->philos[i].isAlive = 0;
+		data->philos[i].is_alive = 0;
 		pthread_mutex_unlock(&data->philos[i].philo_mutex);
 		pthread_mutex_lock(&(data->philos[i].print_mutex));
-		data->philos[i].isOneDead = 1;
+		data->philos[i].is_one_dead = 1;
 		pthread_mutex_unlock(&(data->philos[i].print_mutex));
 		i++;
 	}
@@ -44,9 +44,9 @@ void	ft_one_dead(t_data *data, unsigned int limit_eat, long diff, int i)
 		printf("%10ld ms:	philo %d died\n", diff, data->philos[i].id);
 }
 
-int ft_check_isAllAlive(t_data *d)
+int	ft_check_all_alive(t_data *d)
 {
-	long 			diff;
+	long			diff;
 	long			limit;
 	unsigned int	i;
 	unsigned int	limit_eat;
@@ -62,7 +62,7 @@ int ft_check_isAllAlive(t_data *d)
 		pthread_mutex_unlock(&(d->philos[i].philo_mutex));
 		gettimeofday(&(d->philos[i].time.end), NULL);
 		diff = time_diff(&(d->philos[i].time.start), &(d->philos[i].time.end));
-		if (diff > limit || (limit_eat == d->nb  && d->x_eat != 0))
+		if (diff > limit || (limit_eat == d->nb && d->x_eat != 0))
 		{
 			ft_one_dead(d, limit_eat, diff, i);
 			return (0);
