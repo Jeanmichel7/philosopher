@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 21:57:22 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/16 00:11:18 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 00:58:35 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	ft_kill_all_philos(t_data *data)
 void	ft_one_dead(t_data *data, unsigned int limit_eat, long diff, int i)
 {
 	ft_kill_all_philos(data);
-	if (limit_eat == data->nb)
+	gettimeofday(&(data->philos[i].time.end), NULL);
+	diff = time_diff(&(data->philos[i].time.start),\
+	&(data->philos[i].time.end));
+	if (limit_eat == data->x_eat)
 	{
-		gettimeofday(&(data->philos[i].time.end), NULL);
-		diff = time_diff(&(data->philos[i].time.start), \
-		&(data->philos[i].time.end));
 		printf("%10ld ms:	FIN everyone has eaten %dx\n", diff, \
 		data->x_eat);
 	}
@@ -62,7 +62,7 @@ int	ft_check_all_alive(t_data *d)
 		pthread_mutex_unlock(&(d->philos[i].philo_mutex));
 		gettimeofday(&(d->philos[i].time.end), NULL);
 		diff = time_diff(&(d->philos[i].time.start), &(d->philos[i].time.end));
-		if (diff > limit || (limit_eat == d->nb && d->x_eat != 0))
+		if (diff > limit || (limit_eat == d->x_eat && d->x_eat != 0))
 		{
 			ft_one_dead(d, limit_eat, diff, i);
 			return (0);
