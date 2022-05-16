@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 21:00:55 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/16 00:21:26 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 16:40:39 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_set_philo(t_data *data, int i, char **argv)
 	data->philos[i].last_time_eat = 0;
 	data->philos[i].tot_forks = data->nb;
 	data->philos[i].count_eat = 0;
+	data->philos[i].count_check = 0;
 	data->philos[i].is_one_dead = 0;
 	data->philos[i].main_mutex = (data->main_mutex);
 	pthread_mutex_init(&(data->philos[i].philo_mutex), NULL);

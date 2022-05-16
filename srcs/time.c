@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 23:16:25 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/16 00:15:25 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 18:15:08 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ long	time_diff(struct timeval *start, struct timeval *end)
 {
 	long	diff;
 
-	diff = ((end->tv_sec * 1000000 + end->tv_usec) - \
-	(start->tv_sec * 1000000 + start->tv_usec)) / 1000;
+	diff = ((end->tv_sec * 1000000 + end->tv_usec) \
+			- (start->tv_sec * 1000000 + start->tv_usec)) \
+			/ 1000;
 	return (diff);
 }
 
@@ -48,14 +49,16 @@ long	ft_print_time_diff_philo(t_philo *data, char *str)
 	return (0);
 }
 
-void	better_sleep(unsigned int time)
+void	ft_better_usleep(long time)
 {
-	unsigned int	i;
+	struct timeval	start;
+	struct timeval	end;
 
-	i = 0;
-	while (i < time / 10)
+	gettimeofday(&(start), NULL);
+	gettimeofday(&(end), NULL);
+	while (time_diff(&(start), &(end)) * 1000 < time)
 	{
-		usleep(10);
-		i++;
+		usleep(500);
+		gettimeofday(&(end), NULL);
 	}
 }

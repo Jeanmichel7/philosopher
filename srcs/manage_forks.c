@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 21:58:40 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/16 00:34:50 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 18:15:51 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_init(t_philo *d_philo, int *is_h, int *prev_eating, int *next_eating)
 
 void	ft_bring_fork(t_philo *d_philo, int is_h, int prev_e, int next_e)
 {
-	if (is_h == 1 && prev_e != 1)
+	if (is_h == 1 && prev_e != 1 && next_e != 1)
 	{
 		pthread_mutex_lock(&(d_philo->forks[d_philo->id - 1].f_mutex));
 		if (d_philo->forks[d_philo->id - 1].is_available == 1)
@@ -38,7 +38,7 @@ void	ft_bring_fork(t_philo *d_philo, int is_h, int prev_e, int next_e)
 		}
 		pthread_mutex_unlock(&(d_philo->forks[d_philo->id - 1].f_mutex));
 	}
-	if (is_h == 1 && next_e != 1)
+	if (is_h == 1 && prev_e != 1 && next_e != 1)
 	{
 		pthread_mutex_lock(&(d_philo->forks[d_philo->id % \
 		d_philo->tot_forks].f_mutex));
@@ -109,7 +109,7 @@ void	ft_drop_forks(t_philo *d_philo)
 	pthread_mutex_unlock(&(d_philo->forks[d_philo->id % \
 	d_philo->tot_forks].f_mutex));
 	ft_print_time_diff_philo(d_philo, "is sleeping\n");
-	usleep(d_philo->time_to_sleep * 1000);
+	ft_better_usleep(d_philo->time_to_sleep * 1000);
 	ft_print_time_diff_philo(d_philo, "is thinking\n");
 	pthread_mutex_lock(&(d_philo->philo_mutex));
 	d_philo->is_hungre = 1;

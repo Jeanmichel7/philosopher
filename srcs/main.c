@@ -6,7 +6,7 @@
 /*   By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:24:07 by jrasser           #+#    #+#             */
-/*   Updated: 2022/05/16 00:20:54 by jrasser          ###   ########.fr       */
+/*   Updated: 2022/05/16 18:00:50 by jrasser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void	*ft_loop_philo(t_philo *d_philo)
 	pthread_mutex_lock(&(d_philo->philo_mutex));
 	d_philo->is_alive = 1;
 	if (d_philo->id % 2 == 0)
-		usleep(1000);
+		ft_better_usleep(100 * d_philo->id);
 	is_alive = d_philo->is_alive;
 	pthread_mutex_unlock(&d_philo->philo_mutex);
 	while (is_alive == 1)
 	{
 		if (ft_get_forks(d_philo))
 		{
-			usleep(d_philo->time_to_eat * 1000);
+			ft_better_usleep(d_philo->time_to_eat * 1000);
 			ft_drop_forks(d_philo);
 		}
 		pthread_mutex_lock(&(d_philo->philo_mutex));
@@ -49,6 +49,7 @@ void	ft_create_threads(t_data *data)
 			(void *)ft_loop_philo, &(data->philos[i]));
 		if (ret)
 			printf("Error creation thread %d\n", i);
+		usleep(100);
 		i++;
 	}
 }
