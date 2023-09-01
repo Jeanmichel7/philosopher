@@ -12,8 +12,6 @@ Qui aurait cru que philosopher serait si mortel? Ce projet est une introduction 
 
 ## 📦 Installation
 
-Clonez le repo puis exécutez `make`:
-
 ```bash
 git clone https://github.com/Jeanmichel7/Philosophers.git
 cd Philosophers
