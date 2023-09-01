@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jrasser <jrasser@42.fr>                    +#+  +:+       +#+         #
+#    By: jrasser <jrasser@student.42mulhouse.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/03 16:18:36 by jrasser           #+#    #+#              #
-#    Updated: 2022/05/16 18:26:51 by jrasser          ###   ########.fr        #
+#    Updated: 2023/09/01 21:35:49 by jrasser          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS 		= ${SRCS:.c=.o}
 RM			= rm -f
 NAME 		= philo
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror #-g3 -fsanitize=thread
 
 ${NAME}	:	${OBJS}
 			gcc -o ${NAME} ${OBJS} -lpthread -D_REENTRANT ${CFLAGS}
